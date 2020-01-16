@@ -52,12 +52,13 @@ if __name__ == '__main__':
     # For deploy local
     # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
 
-    REQUEST_KWARGS = {}
     # If you are from mother Russia
+    # REQUEST_KWARGS = {}
     # REQUEST_KWARGS['proxy_url'] = 'https://PROXY_IP:PROXY_PORT'
+    # updater = ext.Updater(token=TG_BOT_TOKEN, request_kwargs=REQUEST_KWARGS)
 
     # create updater. More highlevel interface of Bot
-    updater = ext.Updater(token=TG_BOT_TOKEN, request_kwargs=REQUEST_KWARGS)
+    updater = ext.Updater(token=TG_BOT_TOKEN)
 
     # add handlers
     msg_handler = lambda bot, update: dialog_flow_answer(bot, update, DF_PROJECT_ID, DF_SESSION_ID, DF_LANGUAGE_CODE)
