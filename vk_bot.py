@@ -52,10 +52,13 @@ if __name__ == "__main__":
 
     # For deploy local
     # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
-
-    vk_session = vk_api.VkApi(token=VK_APP_TOKEN)
-    vk_api = vk_session.get_api()
-    longpoll = VkLongPoll(vk_session)
-    for event in longpoll.listen():
-        if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            dialog_flow_answerer(event, vk_api, DF_PROJECT_ID, DF_SESSION_ID, DF_LANGUAGE_CODE)
+    while True:
+        try:
+            vk_session = vk_api.VkApi(token=VK_APP_TOKEN)
+            vk_api = vk_session.get_api()
+            longpoll = VkLongPoll(vk_session)
+            for event in longpoll.listen():
+                if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                    dialog_flow_answerer(event, vk_api, DF_PROJECT_ID, DF_SESSION_ID, DF_LANGUAGE_CODE)
+        except Exception:
+            logger.exception('Critical error in ')

@@ -64,5 +64,8 @@ if __name__ == '__main__':
 
     updater.dispatcher.add_handler(ext.CommandHandler('start', start))
     updater.dispatcher.add_handler(ext.MessageHandler(ext.Filters.text, msg_handler))
-
-    updater.start_polling()
+    while True:
+        try:
+            updater.start_polling()
+        except Exception:
+            logger.exception('Critical error in ')
