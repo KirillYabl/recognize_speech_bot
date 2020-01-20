@@ -1,7 +1,7 @@
 # Speech recognition bots (VK and telegram with dialogflow integration)
 
-[](demo_tg_bot.gif)
-[](demo_vk_bot.gif)
+![](demo_tg_bot.gif)
+![](demo_vk_bot.gif)
 
 This project contain code for create your bots in VK and Telegram.
 
