@@ -54,6 +54,10 @@ if __name__ == "__main__":
     if DF_CREDENTIALS_PATH is not None:
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
     else:
+        logging.debug('GOOGLE_APPLICATION_CREDENTIALS')
+        logging.debug(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
+        logging.debug('GOOGLE_CREDENTIALS')
+        logging.debug(os.environ['GOOGLE_CREDENTIALS'])
         with open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], 'w') as f:
             json.dump(os.environ['GOOGLE_CREDENTIALS'], f)
 
