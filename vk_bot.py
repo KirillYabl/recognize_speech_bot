@@ -1,6 +1,7 @@
 import random
 import logging
 import os
+import json
 
 from common_functions import detect_intent_texts
 
@@ -52,6 +53,9 @@ if __name__ == "__main__":
     # For deploy local
     if DF_CREDENTIALS_PATH is not None:
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
+    else:
+        with open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], 'w') as f:
+            json.dump(os.environ['GOOGLE_CREDENTIALS'], f)
 
     while True:
         try:
