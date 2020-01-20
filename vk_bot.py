@@ -40,7 +40,7 @@ def dialog_flow_answerer(event, vk_api, project_id, session_id, language_code):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(format='%(asctime)s  %(name)s  %(levelname)s  %(message)s', level=logging.INFO)
+    logging.basicConfig(format='%(asctime)s  %(name)s  %(levelname)s  %(message)s', level=logging.DEBUG)
     logger = logging.getLogger('vk_bot')
 
     dotenv.load_dotenv()
