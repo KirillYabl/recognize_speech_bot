@@ -50,7 +50,7 @@ def create_intent(intent, project_id, language_code):
 
 if __name__ == '__main__':
     logging.basicConfig(format='%(asctime)s  %(name)s  %(levelname)s  %(message)s', level=logging.INFO)
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger('dialogflow_trainer')
 
     dotenv.load_dotenv()
     DF_PROJECT_ID = os.getenv('DF_PROJECT_ID')
@@ -58,7 +58,8 @@ if __name__ == '__main__':
     DF_LANGUAGE_CODE = os.getenv('DF_LANGUAGE_CODE')
 
     # For deploy local
-    # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
+    if DF_CREDENTIALS_PATH is not None:
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
 
     training_intents = read_json('training_intents.json')
     logger.info('readed training intents')

@@ -17,7 +17,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
     session_client = dialogflow.SessionsClient()
 
     session = session_client.session_path(project_id, session_id)
-    logger = logging.getLogger(__name__ + 'detect_intent_texts')
+    logger = logging.getLogger('detect_intent_texts')
     logger.debug('Session path: {}\n'.format(session))
 
     for text in texts:
@@ -36,7 +36,7 @@ def detect_intent_texts(project_id, session_id, texts, language_code):
         fulfillment_text = response.query_result.fulfillment_text
         logger.debug('Fulfillment text: {}'.format(fulfillment_text))
 
-        if response.query_result.intent.is_fallback == True:
-            return ''
+        if response.query_result.intent.is_fallback:
+            return None
 
         return fulfillment_text

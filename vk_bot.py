@@ -7,7 +7,6 @@ from common_functions import detect_intent_texts
 import dotenv
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
-import dialogflow_v2 as dialogflow
 
 
 def echo(event, vk_api):
@@ -41,7 +40,7 @@ def dialog_flow_answerer(event, vk_api, project_id, session_id, language_code):
 
 if __name__ == "__main__":
     logging.basicConfig(format='%(asctime)s  %(name)s  %(levelname)s  %(message)s', level=logging.INFO)
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger('vk_bot')
 
     dotenv.load_dotenv()
     VK_APP_TOKEN = os.getenv('VK_APP_TOKEN')
@@ -51,7 +50,9 @@ if __name__ == "__main__":
     DF_LANGUAGE_CODE = os.getenv('DF_LANGUAGE_CODE')
 
     # For deploy local
-    # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
+    if DF_CREDENTIALS_PATH is not None:
+        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
+
     while True:
         try:
             vk_session = vk_api.VkApi(token=VK_APP_TOKEN)

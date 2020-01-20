@@ -6,6 +6,9 @@ __pycache__/
 # dialogflow credentials
 DVMN RECOGNIZE SPEECH BOT-9dd0b213fcb7.json
 
+# dialogflow training json
+training_intents.json
+
 # C extensions
 *.so
 

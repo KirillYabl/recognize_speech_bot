@@ -1,7 +1,7 @@
 # Speech recognition bots (VK and telegram with dialogflow integration)
 
-![](demo_tg_bot.gif)
-![](demo_vk_bot.gif)
+[](demo_tg_bot.gif)
+[](demo_vk_bot.gif)
 
 This project contain code for create your bots in VK and Telegram.
 
@@ -22,6 +22,7 @@ You need to create `.env` file and write in file parameters:
 4. `DF_SESSION_ID` - session id in dialogflow, you can choose random number like 123456789
 5. `DF_LANGUAGE_CODE` - language of your agent. Add language to agent in settings.
 6. `VK_APP_TOKEN` - secret token of you VK app. You can create this in group administration panel in `Work with API`.
+7. `PROXY` - proxy IP with port and https if you need. Work with empty proxy if you in Europe.
 
 Python3 should be already installed. 
 Then use `pip` (or `pip3`, if there is a conflict with Python2) to install dependencies:
@@ -46,7 +47,58 @@ For deploy this bot on [heroku](https://heroku.com) you need to do next:
 
 Open command line (in windows `Win+R` and write `cmd` and `Ok`). Go to directory with program or just write in cmd:
 
-Create your own `training_intents.json` file with training questions and answers for dialogflow or use example file.
+Create your own `training_intents.json` file with training questions and answers for dialogflow.
+
+Example of training file:
+
+{
+    "Устройство на работу": {
+        "questions": [
+            "Как устроиться к вам на работу?",
+            "Как устроиться к вам?",
+            "Как работать у вас?",
+            "Хочу работать у вас",
+            "Возможно-ли устроиться к вам?",
+            "Можно-ли мне поработать у вас?",
+            "Хочу работать редактором у вас"
+        ],
+        "answer": "Если вы хотите устроиться к нам, напишите на почту game-of-verbs@gmail.com мини-эссе о себе и прикрепите ваше портфолио."
+    },
+    "Забыл пароль": {
+        "questions": [
+            "Не помню пароль",
+            "Не могу войти",
+            "Проблемы со входом",
+            "Забыл пароль",
+            "Забыл логин",
+            "Восстановить пароль",
+            "Как восстановить пароль",
+            "Неправильный логин или пароль",
+            "Ошибка входа",
+            "Не могу войти в аккаунт"
+        ],
+        "answer": "Если вы не можете войти на сайт, воспользуйтесь кнопкой «Забыли пароль?» под формой входа. Вам на почту прийдёт письмо с дальнейшими инструкциями. Проверьте папку «Спам», иногда письма попадают в неё."
+    }
+}
+
+```
+
+{
+    INTENT_THEME: {
+        "questions": INTENT_QUESTIONS,
+        "answer": INTENT_ANSWER
+    },
+    INTENT_THEME: {
+        "questions": INTENT_QUESTIONS,
+        "answer": INTENT_ANSWER
+    }
+}
+
+:param INTENT_THEME: str, name of your intent in dialogflow
+:param INTENT_QUESTIONS: list of str, list of questions for training
+:param INTENT_ANSWER: str, answer for questions
+
+```
 
 `python <PATH TO PROGRAM>\training_dialogflow.py` training your agent
 
