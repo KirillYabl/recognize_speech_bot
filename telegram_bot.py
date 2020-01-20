@@ -35,7 +35,8 @@ def dialog_flow_answer(bot, update, project_id, session_id, language_code):
     :param language_code: event with update tg object
     """
     answer = detect_intent_texts(project_id, session_id, [update.message.text], language_code)
-    bot.send_message(chat_id=update.message.chat_id, text=answer)
+    if answer  is not None:
+        bot.send_message(chat_id=update.message.chat_id, text=answer)
 
 
 if __name__ == '__main__':

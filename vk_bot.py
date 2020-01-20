@@ -5,7 +5,7 @@ import os
 from common_functions import detect_intent_texts
 
 import dotenv
-import vk_api
+import vk
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 
@@ -30,7 +30,7 @@ def dialog_flow_answerer(event, vk_api, project_id, session_id, language_code):
     :param language_code: event with update tg object
     """
     answer = detect_intent_texts(project_id, session_id, [event.text], language_code)
-    if answer:
+    if answer is not None:
         vk_api.messages.send(
             user_id=event.user_id,
             message=answer,
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            vk_session = vk_api.VkApi(token=VK_APP_TOKEN)
+            vk_session = vk.VkApi(token=VK_APP_TOKEN)
             vk_api = vk_session.get_api()
             longpoll = VkLongPoll(vk_session)
             for event in longpoll.listen():
