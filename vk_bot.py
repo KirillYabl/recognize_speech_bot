@@ -5,7 +5,7 @@ import os
 from common_functions import detect_intent_texts
 
 import dotenv
-import vk
+import vk_api as vk
 from vk_api.longpoll import VkLongPoll, VkEventType
 
 
