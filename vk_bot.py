@@ -52,16 +52,7 @@ if __name__ == "__main__":
 
     # For deploy local
     if DF_CREDENTIALS_PATH is not None:
-        logging.debug('DF_CREDENTIALS_PATH')
-        logging.debug(DF_CREDENTIALS_PATH)
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
-    else:
-        logging.debug('GOOGLE_APPLICATION_CREDENTIALS')
-        logging.debug(os.environ['GOOGLE_APPLICATION_CREDENTIALS'])
-        logging.debug('GOOGLE_CREDENTIALS')
-        logging.debug(os.environ['GOOGLE_CREDENTIALS'])
-        with open(os.environ['GOOGLE_APPLICATION_CREDENTIALS'], 'w') as f:
-            json.dump(os.environ['GOOGLE_CREDENTIALS'], f)
 
     while True:
         try:
