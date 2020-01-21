@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     dotenv.load_dotenv()
     TG_BOT_TOKEN = os.getenv('TG_BOT_TOKEN')
-    PROXY = os.getenv('TG_BOT_TOKEN')  # Fill in .env if you are from mother Russia
+    PROXY = os.getenv('PROXY')  # Fill in .env if you are from mother Russia
     DF_PROJECT_ID = os.getenv('DF_PROJECT_ID')
     DF_CREDENTIALS_PATH = os.getenv('DF_CREDENTIALS_PATH')
     DF_SESSION_ID = os.getenv('DF_SESSION_ID')
