@@ -56,7 +56,10 @@ if __name__ == '__main__':
         os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = DF_CREDENTIALS_PATH
 
     # create updater. More highlevel interface of Bot
-    updater = ext.Updater(token=TG_BOT_TOKEN, request_kwargs={'proxy_url': PROXY})
+    request_kwargs = None
+    if PROXY is not None:
+        request_kwargs = {'proxy_url': PROXY}
+    updater = ext.Updater(token=TG_BOT_TOKEN, request_kwargs=request_kwargs)
 
     # add handlers
     msg_handler = lambda bot, update: dialog_flow_answer(bot, update, DF_PROJECT_ID, DF_SESSION_ID, DF_LANGUAGE_CODE)
